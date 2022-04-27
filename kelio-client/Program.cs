@@ -17,10 +17,8 @@ namespace kelio_client
     [STAThread]
     static void Main()
     {
-      Console.WriteLine("main");
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Console.WriteLine("main 2");
       // requests();
       Application.Run(new MainForm());
     }
