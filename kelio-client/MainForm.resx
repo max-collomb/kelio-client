@@ -118,6 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="notifCheckBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        dQAAAHUB48IHZQAAAX5JREFUOE+Nkj1Lw1AYhQPaUh2c/UJBFFzFxU1dBBd/gIPt4JxI0yC6JGlpp5ZS
+        BNM2BEKaunTXX1Gkg6iTHUUcnPyg2HiueUPa2ww5cJZwnie9txH4uK6bchxnXlXVZU3TniVJ+snlctum
+        aS4YhpGiWXQAr7ZarS4qAj7Wdf1OluV3CK4ajYaEduv1+grNx9Nut2cB9vD2k0qlcog+oB5EHkTfxWLx
+        EoI0et9sNmcICwP4HL0GdIT+MjgQBC2VSjoEBqoQFgbwE46wDqgfwLwAv2QAeAN9JMxPp9NJQvAKYHMU
+        5gWsOMoBBG+1Wi1J+L8ggbNnyuXyTgzBKQQZ27YThIeJK6D5ZADsxxCc0XwyAC5iCG5pPh6MF9GPUZiV
+        F+CfGEKyRVgYjG94mJUXsBYKhRfC/FiWNYXxFw+zRglYIZkmXBCq1eocxkMeZo2CWXGMJcL9YMzuYC1o
+        Pp/voV42m/UURfnEZ7wbNPIO+OCy9vCmviiKAwhEesxFEP4A4FGoRIWPurUAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>97, 17</value>
+  </metadata>
+  <data name="paramButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        WQAAAFkBqp2phgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAF3SURBVDhPY8AG
+        0lY98E5bef8fEP/3bzkPxhGTrtRApQmDtBX3UkCaUQ24NhcqjQlS1t6WASo+mL7yfmTKqofGQPZ5dAOC
+        ui59jZh2PSpiyrUpwd2X30dMum0I1Q6y8f5SmAZ0DDMAHYf1XrkD1py+6oElUCHYv8g4fdX9/1Xbn/4v
+        X3Hvf3DHRayGRE69lsWQuvLeEXTNldue/j/y4uf/a5///d/75s//fa9+/y9ddhfDgJDuSx8Y0lfeiwFq
+        egvTDLL5KFQzzACYIUFtCJcEtF/4BwoPsDdSVzzwhBlQDXQ2TDOyASCM7IqIadfKwZpBANkAkL9xGVC8
+        5B7cgMiJVyvBmqFeeAMzAOQFmP9RDEDzQmD7xb9gL+AMxOeIQARpRrYdhiGBiCcaQeFRtvwuis3IOGLS
+        jSSYN5agGwDD2DSCcFjvZUhCAgFoUj6QuuJ+RMbyB4Zpq+6fQzcA6NwvEVOvhYOTcs8l1KSMDkjOTOiA
+        +OzMwAAAr6ZCjby5/IcAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="inOutBox.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAQEAAAAEAIAAoQgAAFgAAACgAAABAAAAAgAAAAAEAIAAAAAAAAEAAAMMOAADDDgAAAAAAAAAA
