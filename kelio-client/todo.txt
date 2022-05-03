@@ -1,0 +1,2 @@
+- option pour rappel automatique
+- activation rappel => champ de saisie pour choisir l'heure

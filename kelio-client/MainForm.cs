@@ -50,6 +50,12 @@ namespace kelio_client
       });
     }
 
+    private void BeepBeep() {
+      System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+      player.Stream = Properties.Resources.notif;
+      player.Play();
+    }
+
     private struct Tokens
     {
       public string csrf { get; set; }
@@ -225,6 +231,10 @@ namespace kelio_client
 
       string weekDiff = new Regex(@"<li>Votre crédit \/ débit hebdomadaire est de (.*)<\/li>").Match(htmlContent).Groups[1].Value;
       string weekDiffYesterday = new Regex(@"<li>Votre crédit \/ débit hebdomadaire arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value;
+
+      if (clockInCount == 0)
+        BeepBeep();
+
       if (clockInCount > clockOutCount)
       {
         if (weekDiff.StartsWith("-"))
@@ -265,7 +275,7 @@ namespace kelio_client
           reminderH--;
           reminderM += 60;
         }
-        AppendText(reminderH + ":" + reminderM, Color.FromArgb(96, 96, 96), true);
+        AppendText(reminderH?.ToString("00") + ":" + reminderM?.ToString("00"), Color.FromArgb(96, 96, 96), true);
         if (DateTime.Now.Hour >= 12 && weekDiff.StartsWith("-"))
         {
           notifCheckBox.Visible = true;
@@ -295,9 +305,9 @@ namespace kelio_client
             reminderH++;
             reminderM -= 60;
           }
-          AppendText(nextClockInH + ":" + nextClockInM, Color.FromArgb(96, 96, 96), false);
+          AppendText(nextClockInH.ToString("00") + ":" + nextClockInM.ToString("00"), Color.FromArgb(96, 96, 96), false);
           AppendText(" - ", Color.White, false);
-          AppendText(reminderH + ":" + reminderM, Color.FromArgb(96, 96, 96), true);
+          AppendText(reminderH?.ToString("00") + ":" + reminderM?.ToString("00"), Color.FromArgb(96, 96, 96), true);
           notifCheckBox.Visible = true;
           reminderH = nextClockInH;
           reminderM = nextClockInM;
@@ -305,10 +315,21 @@ namespace kelio_client
         }
       }
 
-      string totalDiff = new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value;
+      string totalDiff = new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value; ;
+      if (clockInCount == clockOutCount && DateTime.Now.Hour >= 16)
+      {
+        weekDiffLabel.Text = ((weekDiff.StartsWith("-") || weekDiff == "0:00") ? "" : "+") + weekDiff;
+        toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire");
+        toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire");
+      }
+      else
+      {
+        weekDiffLabel.Text = ((weekDiffYesterday.StartsWith("-") || weekDiffYesterday == "0:00") ? "" : "+") + weekDiffYesterday;
+        toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire arrêté à la veille");
+        toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire arrêté à la veille");
+      }
 
       totalDiffLabel.Text = (totalDiff.StartsWith("-") ? "" : "+") + totalDiff;
-      weekDiffLabel.Text = ((weekDiffYesterday.StartsWith("-") || weekDiffYesterday == "0:00") ? "" : "+") + weekDiffYesterday;
     }
 
     private async Task ClockInOut()
@@ -350,9 +371,9 @@ namespace kelio_client
           inOutBox.Text = "";
           AppendText("Bagde ", Color.White, false);
           AppendText(success.Groups[1].Value, Color.MediumSeaGreen, true);
-          AppendText(" le ", Color.White, false);
+          AppendText("le ", Color.White, false);
           AppendText(success.Groups[2].Value, Color.MediumSeaGreen, true);
-          AppendText(" à ", Color.White, false);
+          AppendText("à ", Color.White, false);
           AppendText(success.Groups[3].Value, Color.MediumSeaGreen, false);
           feedbackLabel.Visible = false;
           progressBar.Visible = false;
@@ -405,7 +426,7 @@ namespace kelio_client
         reminderM = null;
         notifCheckBox.Checked = false;
         notifCheckBox.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
-        System.Media.SystemSounds.Hand.Play();
+        BeepBeep();
         if (MainForm.ActiveForm == null)
           FlashWindowUtil.FlashWindowEx(this.Handle);
       }

@@ -56,14 +56,14 @@ namespace kelio_client
       this.progressBar = new System.Windows.Forms.ProgressBar();
       this.clockInOutButton = new System.Windows.Forms.Button();
       this.panel6 = new System.Windows.Forms.Panel();
+      this.inOutBox = new kelio_client.ExRichTextBox();
       this.panel7 = new System.Windows.Forms.Panel();
       this.label10 = new System.Windows.Forms.Label();
       this.totalDiffLabel = new System.Windows.Forms.Label();
       this.weekDiffLabel = new System.Windows.Forms.Label();
-      this.label7 = new System.Windows.Forms.Label();
+      this.weekDiffTitleLabel = new System.Windows.Forms.Label();
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.inOutBox = new kelio_client.ExRichTextBox();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
       this.panel6.SuspendLayout();
@@ -239,12 +239,31 @@ namespace kelio_client
       this.panel6.Size = new System.Drawing.Size(260, 107);
       this.panel6.TabIndex = 12;
       // 
+      // inOutBox
+      // 
+      this.inOutBox.BackColor = System.Drawing.Color.Black;
+      this.inOutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.inOutBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+      this.inOutBox.DetectUrls = false;
+      this.inOutBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.inOutBox.ForeColor = System.Drawing.Color.White;
+      this.inOutBox.Location = new System.Drawing.Point(8, 0);
+      this.inOutBox.Name = "inOutBox";
+      this.inOutBox.ReadOnly = true;
+      this.inOutBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+      this.inOutBox.ShortcutsEnabled = false;
+      this.inOutBox.Size = new System.Drawing.Size(110, 107);
+      this.inOutBox.TabIndex = 2;
+      this.inOutBox.TabStop = false;
+      this.inOutBox.Text = "";
+      this.inOutBox.WordWrap = false;
+      // 
       // panel7
       // 
       this.panel7.Controls.Add(this.label10);
       this.panel7.Controls.Add(this.totalDiffLabel);
       this.panel7.Controls.Add(this.weekDiffLabel);
-      this.panel7.Controls.Add(this.label7);
+      this.panel7.Controls.Add(this.weekDiffTitleLabel);
       this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
       this.panel7.Location = new System.Drawing.Point(185, 0);
       this.panel7.Name = "panel7";
@@ -292,44 +311,25 @@ namespace kelio_client
       this.weekDiffLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       this.toolTip.SetToolTip(this.weekDiffLabel, "Crédit / débit hebdomadaire arrêté à la veille");
       // 
-      // label7
+      // weekDiffTitleLabel
       // 
-      this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-      this.label7.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.label7.ForeColor = System.Drawing.Color.Silver;
-      this.label7.Location = new System.Drawing.Point(0, 0);
-      this.label7.Margin = new System.Windows.Forms.Padding(2);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(67, 20);
-      this.label7.TabIndex = 10;
-      this.label7.Text = "Semaine";
-      this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.toolTip.SetToolTip(this.label7, "Crédit / débit hebdomadaire arrêté à la veille");
+      this.weekDiffTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+      this.weekDiffTitleLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.weekDiffTitleLabel.ForeColor = System.Drawing.Color.Silver;
+      this.weekDiffTitleLabel.Location = new System.Drawing.Point(0, 0);
+      this.weekDiffTitleLabel.Margin = new System.Windows.Forms.Padding(2);
+      this.weekDiffTitleLabel.Name = "weekDiffTitleLabel";
+      this.weekDiffTitleLabel.Size = new System.Drawing.Size(67, 20);
+      this.weekDiffTitleLabel.TabIndex = 10;
+      this.weekDiffTitleLabel.Text = "Semaine";
+      this.weekDiffTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.toolTip.SetToolTip(this.weekDiffTitleLabel, "Crédit / débit hebdomadaire arrêté à la veille");
       // 
       // timer
       // 
       this.timer.Enabled = true;
       this.timer.Interval = 1000;
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
-      // 
-      // inOutBox
-      // 
-      this.inOutBox.BackColor = System.Drawing.Color.Black;
-      this.inOutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.inOutBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-      this.inOutBox.DetectUrls = false;
-      this.inOutBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.inOutBox.ForeColor = System.Drawing.Color.White;
-      this.inOutBox.Location = new System.Drawing.Point(8, 0);
-      this.inOutBox.Name = "inOutBox";
-      this.inOutBox.ReadOnly = true;
-      this.inOutBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-      this.inOutBox.ShortcutsEnabled = false;
-      this.inOutBox.Size = new System.Drawing.Size(110, 107);
-      this.inOutBox.TabIndex = 2;
-      this.inOutBox.TabStop = false;
-      this.inOutBox.Text = "";
-      this.inOutBox.WordWrap = false;
       // 
       // MainForm
       // 
@@ -345,7 +345,6 @@ namespace kelio_client
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Margin = new System.Windows.Forms.Padding(2);
       this.MaximizeBox = false;
-      this.MinimizeBox = false;
       this.Name = "MainForm";
       this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
       this.Text = "Kelio";
@@ -373,7 +372,7 @@ namespace kelio_client
     private System.Windows.Forms.Label label10;
     private System.Windows.Forms.Label totalDiffLabel;
     private System.Windows.Forms.Label weekDiffLabel;
-    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.Label weekDiffTitleLabel;
     private ExRichTextBox inOutBox;
     private Label feedbackLabel;
     private ProgressBar progressBar;
