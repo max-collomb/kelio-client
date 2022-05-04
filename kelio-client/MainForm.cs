@@ -18,6 +18,7 @@ namespace kelio_client
 {
   public partial class MainForm : Form
   {
+    private bool reminderEnabled = false;
     private int? reminderH = null;
     private int? reminderM = null;
     private int? date = null;
@@ -126,11 +127,8 @@ namespace kelio_client
     {
       timer.Enabled = false;
       refreshButton.Visible = false;
-      notifCheckBox.Visible = false;
-      reminderH = null;
-      reminderM = null;
+      reminderDropDownBtn.Visible = false;
       date = DateTime.Now.DayOfYear;
-      toolTip.SetToolTip(notifCheckBox, null);
       kelioUrlLabel.Text = Properties.Settings.Default.Url;
 
       inOutBox.Text = "";
@@ -142,6 +140,7 @@ namespace kelio_client
       clockInOutButton.Visible = false;
       feedbackLabel.Visible = true;
       progressBar.Visible = true;
+      reminderPanel.Visible = false;
 
       Uri baseAddress = new Uri(Properties.Settings.Default.Url);
       CookieContainer cookieContainer = new CookieContainer();
@@ -184,6 +183,8 @@ namespace kelio_client
       progressBar.Visible = false;
       clockInOutButton.Visible = true;
       refreshButton.Visible = true;
+      reminderDropDownBtn.Visible = true;
+      reminderPanel.Visible = false;
       clockInOutButton.Focus();
       timer.Enabled = true;
     }
@@ -235,52 +236,57 @@ namespace kelio_client
       if (clockInCount == 0)
         BeepBeep();
 
+      int? remindH = null;
+      int? remindM = null;
+
       if (clockInCount > clockOutCount)
       {
         if (weekDiff.StartsWith("-"))
         {
-          reminderH = DateTime.Now.Hour - Int32.Parse(weekDiff.Split(':')[0]);
-          reminderM = DateTime.Now.Minute + Int32.Parse(weekDiff.Split(':')[1]);
+          remindH = DateTime.Now.Hour - Int32.Parse(weekDiff.Split(':')[0]);
+          remindM = DateTime.Now.Minute + Int32.Parse(weekDiff.Split(':')[1]);
         } else
         {
-          reminderH = DateTime.Now.Hour + Int32.Parse(weekDiff.Split(':')[0]);
-          reminderM = DateTime.Now.Minute - Int32.Parse(weekDiff.Split(':')[1]);
+          remindH = DateTime.Now.Hour + Int32.Parse(weekDiff.Split(':')[0]);
+          remindM = DateTime.Now.Minute - Int32.Parse(weekDiff.Split(':')[1]);
         }
+        int endOfDayH = remindH.GetValueOrDefault(DateTime.Now.Hour);
+        int endOfDayM = remindM.GetValueOrDefault(DateTime.Now.Minute);
         if (DateTime.Now.Hour < 13)
         {
           int pause = GetPause(DateTime.Now.DayOfWeek);
           if (pause > 0)
           {
+            endOfDayH = remindH.GetValueOrDefault(0);
+            endOfDayM = remindM.GetValueOrDefault(0) + pause;
             if (pause > 105)
             {
+              remindH = 12;
+              remindM = 0;
               AppendText("12:00", Color.FromArgb(96, 96, 96), true);
               AppendText((12 + (int)Math.Floor((float)pause / 60)) + ":" + (pause % 60).ToString("00"), Color.FromArgb(96, 96, 96), false);
             }
             else
             {
+              remindH = 12;
+              remindM = 15;
               AppendText("12:15", Color.FromArgb(96, 96, 96), true);
               AppendText((pause == 105 ? "14" : "13") + ":" + ((float)(pause - 45) % 60).ToString("00"), Color.FromArgb(96, 96, 96), false);
             }
             AppendText(" - ", Color.White, false);
           }
-          reminderM += pause;
         }
-        while (reminderM > 59)
+        while (endOfDayM > 59)
         {
-          reminderH++;
-          reminderM -= 60;
+          endOfDayH++;
+          endOfDayM -= 60;
         }
-        while (reminderM < 0)
+        while (endOfDayM < 0)
         {
-          reminderH--;
-          reminderM += 60;
+          endOfDayH--;
+          endOfDayM += 60;
         }
-        AppendText(reminderH?.ToString("00") + ":" + reminderM?.ToString("00"), Color.FromArgb(96, 96, 96), true);
-        if (DateTime.Now.Hour >= 12 && weekDiff.StartsWith("-"))
-        {
-          notifCheckBox.Visible = true;
-          toolTip.SetToolTip(notifCheckBox, "Définir un rappel à " + reminderH + ":" + reminderM);
-        }
+        AppendText(endOfDayH.ToString("00") + ":" + endOfDayM.ToString("00"), Color.FromArgb(96, 96, 96), true);
       }
       else
       {
@@ -298,21 +304,25 @@ namespace kelio_client
             nextClockInH = 14;
             nextClockInM = 0;
           }
-          reminderH = nextClockInH - Int32.Parse(weekDiff.Split(':')[0]);
-          reminderM = nextClockInM + Int32.Parse(weekDiff.Split(':')[1]);
-          while (reminderM > 59)
+          remindH = nextClockInH - Int32.Parse(weekDiff.Split(':')[0]);
+          remindM = nextClockInM + Int32.Parse(weekDiff.Split(':')[1]);
+          while (remindM > 59)
           {
-            reminderH++;
-            reminderM -= 60;
+            remindH++;
+            remindM -= 60;
           }
           AppendText(nextClockInH.ToString("00") + ":" + nextClockInM.ToString("00"), Color.FromArgb(96, 96, 96), false);
           AppendText(" - ", Color.White, false);
-          AppendText(reminderH?.ToString("00") + ":" + reminderM?.ToString("00"), Color.FromArgb(96, 96, 96), true);
-          notifCheckBox.Visible = true;
-          reminderH = nextClockInH;
-          reminderM = nextClockInM;
-          toolTip.SetToolTip(notifCheckBox, "Définir un rappel à " + reminderH + ":" + reminderM);
+          AppendText(remindH?.ToString("00") + ":" + remindM?.ToString("00"), Color.FromArgb(96, 96, 96), true);
+          remindH = nextClockInH;
+          remindM = nextClockInM;
         }
+
+      }
+      if (remindM != null && remindH != null && !reminderEnabled)
+      {
+        reminderH = remindH;
+        reminderM = remindM;
       }
 
       string totalDiff = new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value; ;
@@ -335,10 +345,11 @@ namespace kelio_client
     private async Task ClockInOut()
     {
       timer.Enabled = false;
-      notifCheckBox.Checked = false;
+      reminderEnabled = false;
       clockInOutButton.Visible = false;
       feedbackLabel.Visible = true;
       progressBar.Visible = true;
+      reminderPanel.Visible = false;
 
       Uri baseAddress = new Uri(Properties.Settings.Default.Url);
       CookieContainer cookieContainer = new CookieContainer();
@@ -390,6 +401,7 @@ namespace kelio_client
           progressBar.Visible = false;
           clockInOutButton.Visible = true;
           refreshButton.Visible = true;
+          reminderDropDownBtn.Visible = true;
           clockInOutButton.Focus();
           timer.Enabled = true;
         }
@@ -420,12 +432,12 @@ namespace kelio_client
       this.Text = DateTime.Now.Hour.ToString("00") + ":"
                 + DateTime.Now.Minute.ToString("00") + ":"
                 + DateTime.Now.Second.ToString("00");
-      if (notifCheckBox.Checked && DateTime.Now.Hour == reminderH && DateTime.Now.Minute == reminderM)
+      if (reminderEnabled && DateTime.Now.Hour == reminderH && DateTime.Now.Minute == reminderM)
       {
         reminderH = null;
         reminderM = null;
-        notifCheckBox.Checked = false;
-        notifCheckBox.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
+        reminderEnabled = false;
+        reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
         BeepBeep();
         if (MainForm.ActiveForm == null)
           FlashWindowUtil.FlashWindowEx(this.Handle);
@@ -433,20 +445,6 @@ namespace kelio_client
       if (date != DateTime.Now.DayOfYear)
       {
         _ = Consult();
-      }
-    }
-
-    private void notifCheckBox_CheckedChanged(object sender, EventArgs e)
-    {
-      if (notifCheckBox.Checked)
-      {
-        notifCheckBox.BackgroundImage = global::kelio_client.Properties.Resources.notif_enabled;
-        toolTip.SetToolTip(notifCheckBox, "Annuler le rappel à " + reminderH + ":" + reminderM);
-      }
-      else
-      {
-        notifCheckBox.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
-        toolTip.SetToolTip(notifCheckBox, "Définir un rappel à " + reminderH + ":" + reminderM);
       }
     }
 
@@ -458,7 +456,7 @@ namespace kelio_client
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-      if (e.CloseReason == CloseReason.UserClosing && notifCheckBox.Checked && reminderH != null && reminderM != null)
+      if (e.CloseReason == CloseReason.UserClosing && reminderEnabled && reminderH != null && reminderM != null)
       {
         if (MessageBox.Show("Un rappel est activé pour " + reminderH + ":" + reminderM + "\nQuitter ?", "Confirmer la fermeture", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
           e.Cancel = true;
@@ -493,5 +491,80 @@ namespace kelio_client
         DesktopBounds = Properties.Settings.Default.WindowPosition;
       }
     }
+
+    private void cancelReminderBtn_Click(object sender, EventArgs e)
+    {
+      reminderEnabled = false;
+      reminderPanel.Visible = false;
+      clockInOutButton.Visible = true;
+      reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
+      toolTip.SetToolTip(reminderDropDownBtn, "Définir un rappel");
+    }
+
+    private void reminderDropDownBtn_Click(object sender, EventArgs e)
+    {
+      feedbackLabel.Visible = false;
+      progressBar.Visible = false;
+      if (reminderPanel.Visible)
+      {
+        clockInOutButton.Visible = true;
+        reminderPanel.Visible = false;
+      }
+      else
+      {
+        clockInOutButton.Visible = false;
+        reminderPanel.Visible = true;
+        reminderFeedbackLabel.Text = "";
+        if (reminderH != null && reminderM != null)
+        {
+          reminderTextBox.Text = reminderH.GetValueOrDefault(0).ToString("00") + ":" + reminderM.GetValueOrDefault(0).ToString("00");
+        }
+        else
+        {
+          reminderTextBox.Text = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00");
+        }
+        
+        reminderTextBox.Focus();
+      }
+    }
+
+    private void validateReminderBtn_Click(object sender, EventArgs e)
+    {
+      validateReminder();
+    }
+
+    private void reminderTextBox_KeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode == Keys.Enter)
+      {
+        validateReminder();
+        e.Handled = true;
+        e.SuppressKeyPress = true;
+      }
+    }
+
+    private async void validateReminder()
+    {
+      Match match = new Regex(@"([0-9]{1,2})[:h]([0-9]{1,2})").Match(reminderTextBox.Text);
+      if (match.Success)
+      {
+        reminderH = Int32.Parse(match.Groups[1].Value);
+        reminderM = Int32.Parse(match.Groups[2].Value);
+        reminderEnabled = true;
+        reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_enabled;
+        toolTip.SetToolTip(reminderDropDownBtn, "Modifier / Annuler le rappel à " + reminderH?.ToString("00") + ":" + reminderM?.ToString("00"));
+        reminderFeedbackLabel.Text = "Rappel à " + reminderH?.ToString("00") + ":" + reminderM?.ToString("00");
+        reminderFeedbackLabel.ForeColor = Color.MediumSeaGreen;
+        await Task.Delay(2000);
+        clockInOutButton.Visible = true;
+        reminderPanel.Visible = false;
+      }
+      else
+      {
+        reminderFeedbackLabel.Text = "Formats 18:15 / 18h15";
+        reminderFeedbackLabel.ForeColor = Color.Red;
+      }
+    }
   }
 }
+

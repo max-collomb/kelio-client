@@ -117,22 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="notifCheckBox.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        dQAAAHUB48IHZQAAAX5JREFUOE+Nkj1Lw1AYhQPaUh2c/UJBFFzFxU1dBBd/gIPt4JxI0yC6JGlpp5ZS
-        BNM2BEKaunTXX1Gkg6iTHUUcnPyg2HiueUPa2ww5cJZwnie9txH4uK6bchxnXlXVZU3TniVJ+snlctum
-        aS4YhpGiWXQAr7ZarS4qAj7Wdf1OluV3CK4ajYaEduv1+grNx9Nut2cB9vD2k0qlcog+oB5EHkTfxWLx
-        EoI0et9sNmcICwP4HL0GdIT+MjgQBC2VSjoEBqoQFgbwE46wDqgfwLwAv2QAeAN9JMxPp9NJQvAKYHMU
-        5gWsOMoBBG+1Wi1J+L8ggbNnyuXyTgzBKQQZ27YThIeJK6D5ZADsxxCc0XwyAC5iCG5pPh6MF9GPUZiV
-        F+CfGEKyRVgYjG94mJUXsBYKhRfC/FiWNYXxFw+zRglYIZkmXBCq1eocxkMeZo2CWXGMJcL9YMzuYC1o
-        Pp/voV42m/UURfnEZ7wbNPIO+OCy9vCmviiKAwhEesxFEP4A4FGoRIWPurUAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>97, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="paramButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA

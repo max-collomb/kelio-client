@@ -103,6 +103,8 @@
     <Resource Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\close.png" />
+    <None Include="Resources\check.png" />
     <None Include="Resources\notif.wav" />
     <None Include="Resources\notif_enabled.png" />
     <None Include="Resources\adjust.png" />
