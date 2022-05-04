@@ -323,6 +323,12 @@ namespace kelio_client
       {
         reminderH = remindH;
         reminderM = remindM;
+        if (Properties.Settings.Default.AutoReminder)
+        {
+          reminderEnabled = true;
+          reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_enabled;
+          toolTip.SetToolTip(reminderDropDownBtn, "Modifier / Annuler le rappel à " + reminderH?.ToString("00") + ":" + reminderM?.ToString("00"));
+        }
       }
 
       string totalDiff = new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value; ;

@@ -130,5 +130,17 @@ namespace kelio_client.Properties {
                 this["WindowPosition"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoReminder {
+            get {
+                return ((bool)(this["AutoReminder"]));
+            }
+            set {
+                this["AutoReminder"] = value;
+            }
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace kelio_client
       Properties.Settings.Default.PauseWednesday = (int) wednesdayNumericUpDown.Value;
       Properties.Settings.Default.PauseThursday = (int) thursdayNumericUpDown.Value;
       Properties.Settings.Default.PauseFriday = (int) fridayNumericUpDown.Value;
+      Properties.Settings.Default.AutoReminder = autoReminderCheckBox.Checked;
       Properties.Settings.Default.Save();
     }
 
@@ -51,6 +52,7 @@ namespace kelio_client
       wednesdayNumericUpDown.Value = Properties.Settings.Default.PauseWednesday;
       thursdayNumericUpDown.Value = Properties.Settings.Default.PauseThursday;
       fridayNumericUpDown.Value = Properties.Settings.Default.PauseFriday;
+      autoReminderCheckBox.Checked = Properties.Settings.Default.AutoReminder;
     }
   }
 }

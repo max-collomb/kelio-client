@@ -52,6 +52,7 @@ namespace kelio_client
       this.cancelButton = new System.Windows.Forms.Button();
       this.panel2 = new System.Windows.Forms.Panel();
       this.saveButton = new System.Windows.Forms.Button();
+      this.autoReminderCheckBox = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.mondayNumericUpDown)).BeginInit();
@@ -80,7 +81,7 @@ namespace kelio_client
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 100);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(336, 100);
       this.tableLayoutPanel1.TabIndex = 0;
       // 
       // label1
@@ -118,7 +119,7 @@ namespace kelio_client
       this.urlTextBox.Dock = System.Windows.Forms.DockStyle.Top;
       this.urlTextBox.Location = new System.Drawing.Point(93, 3);
       this.urlTextBox.Name = "urlTextBox";
-      this.urlTextBox.Size = new System.Drawing.Size(205, 20);
+      this.urlTextBox.Size = new System.Drawing.Size(240, 20);
       this.urlTextBox.TabIndex = 3;
       // 
       // loginTextBox
@@ -126,7 +127,7 @@ namespace kelio_client
       this.loginTextBox.Dock = System.Windows.Forms.DockStyle.Top;
       this.loginTextBox.Location = new System.Drawing.Point(93, 33);
       this.loginTextBox.Name = "loginTextBox";
-      this.loginTextBox.Size = new System.Drawing.Size(205, 20);
+      this.loginTextBox.Size = new System.Drawing.Size(240, 20);
       this.loginTextBox.TabIndex = 4;
       // 
       // passwordTextBox
@@ -135,7 +136,7 @@ namespace kelio_client
       this.passwordTextBox.Location = new System.Drawing.Point(93, 63);
       this.passwordTextBox.Name = "passwordTextBox";
       this.passwordTextBox.PasswordChar = '●';
-      this.passwordTextBox.Size = new System.Drawing.Size(205, 20);
+      this.passwordTextBox.Size = new System.Drawing.Size(240, 20);
       this.passwordTextBox.TabIndex = 5;
       this.passwordTextBox.UseSystemPasswordChar = true;
       // 
@@ -145,7 +146,7 @@ namespace kelio_client
       this.label4.Location = new System.Drawing.Point(10, 110);
       this.label4.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(301, 28);
+      this.label4.Size = new System.Drawing.Size(336, 28);
       this.label4.TabIndex = 1;
       this.label4.Text = "Temps de pause théorique (en minutes)";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,7 +175,7 @@ namespace kelio_client
       this.tableLayoutPanel2.RowCount = 2;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(301, 50);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(336, 50);
       this.tableLayoutPanel2.TabIndex = 2;
       // 
       // label5
@@ -189,7 +190,7 @@ namespace kelio_client
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(63, 0);
+      this.label6.Location = new System.Drawing.Point(70, 0);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(33, 13);
       this.label6.TabIndex = 1;
@@ -198,7 +199,7 @@ namespace kelio_client
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(123, 0);
+      this.label7.Location = new System.Drawing.Point(137, 0);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(48, 13);
       this.label7.TabIndex = 2;
@@ -207,7 +208,7 @@ namespace kelio_client
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(183, 0);
+      this.label8.Location = new System.Drawing.Point(204, 0);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(32, 13);
       this.label8.TabIndex = 3;
@@ -216,7 +217,7 @@ namespace kelio_client
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(243, 0);
+      this.label9.Location = new System.Drawing.Point(271, 0);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(49, 13);
       this.label9.TabIndex = 4;
@@ -246,7 +247,7 @@ namespace kelio_client
       // 
       // tuesdayNumericUpDown
       // 
-      this.tuesdayNumericUpDown.Location = new System.Drawing.Point(63, 23);
+      this.tuesdayNumericUpDown.Location = new System.Drawing.Point(70, 23);
       this.tuesdayNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -268,7 +269,7 @@ namespace kelio_client
       // 
       // wednesdayNumericUpDown
       // 
-      this.wednesdayNumericUpDown.Location = new System.Drawing.Point(123, 23);
+      this.wednesdayNumericUpDown.Location = new System.Drawing.Point(137, 23);
       this.wednesdayNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -290,7 +291,7 @@ namespace kelio_client
       // 
       // thursdayNumericUpDown
       // 
-      this.thursdayNumericUpDown.Location = new System.Drawing.Point(183, 23);
+      this.thursdayNumericUpDown.Location = new System.Drawing.Point(204, 23);
       this.thursdayNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -312,7 +313,7 @@ namespace kelio_client
       // 
       // fridayNumericUpDown
       // 
-      this.fridayNumericUpDown.Location = new System.Drawing.Point(243, 23);
+      this.fridayNumericUpDown.Location = new System.Drawing.Point(271, 23);
       this.fridayNumericUpDown.Maximum = new decimal(new int[] {
             120,
             0,
@@ -338,16 +339,16 @@ namespace kelio_client
       this.panel1.Controls.Add(this.panel2);
       this.panel1.Controls.Add(this.saveButton);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.panel1.Location = new System.Drawing.Point(10, 209);
+      this.panel1.Location = new System.Drawing.Point(10, 228);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(301, 30);
+      this.panel1.Size = new System.Drawing.Size(336, 30);
       this.panel1.TabIndex = 3;
       // 
       // cancelButton
       // 
       this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
       this.cancelButton.Dock = System.Windows.Forms.DockStyle.Right;
-      this.cancelButton.Location = new System.Drawing.Point(141, 0);
+      this.cancelButton.Location = new System.Drawing.Point(176, 0);
       this.cancelButton.Name = "cancelButton";
       this.cancelButton.Size = new System.Drawing.Size(75, 30);
       this.cancelButton.TabIndex = 2;
@@ -357,7 +358,7 @@ namespace kelio_client
       // panel2
       // 
       this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-      this.panel2.Location = new System.Drawing.Point(216, 0);
+      this.panel2.Location = new System.Drawing.Point(251, 0);
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(10, 30);
       this.panel2.TabIndex = 1;
@@ -366,7 +367,7 @@ namespace kelio_client
       // 
       this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
       this.saveButton.Dock = System.Windows.Forms.DockStyle.Right;
-      this.saveButton.Location = new System.Drawing.Point(226, 0);
+      this.saveButton.Location = new System.Drawing.Point(261, 0);
       this.saveButton.Name = "saveButton";
       this.saveButton.Size = new System.Drawing.Size(75, 30);
       this.saveButton.TabIndex = 0;
@@ -374,13 +375,26 @@ namespace kelio_client
       this.saveButton.UseVisualStyleBackColor = true;
       this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
       // 
+      // autoReminderCheckBox
+      // 
+      this.autoReminderCheckBox.AutoSize = true;
+      this.autoReminderCheckBox.Dock = System.Windows.Forms.DockStyle.Top;
+      this.autoReminderCheckBox.Location = new System.Drawing.Point(10, 188);
+      this.autoReminderCheckBox.Name = "autoReminderCheckBox";
+      this.autoReminderCheckBox.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+      this.autoReminderCheckBox.Size = new System.Drawing.Size(336, 22);
+      this.autoReminderCheckBox.TabIndex = 4;
+      this.autoReminderCheckBox.Text = "Activer automatiquement  les rappels après chaque badgeage";
+      this.autoReminderCheckBox.UseVisualStyleBackColor = true;
+      // 
       // ParamsForm
       // 
       this.AcceptButton = this.saveButton;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cancelButton;
-      this.ClientSize = new System.Drawing.Size(321, 249);
+      this.ClientSize = new System.Drawing.Size(356, 268);
+      this.Controls.Add(this.autoReminderCheckBox);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.tableLayoutPanel2);
       this.Controls.Add(this.label4);
@@ -404,6 +418,7 @@ namespace kelio_client
       ((System.ComponentModel.ISupportInitialize)(this.fridayNumericUpDown)).EndInit();
       this.panel1.ResumeLayout(false);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -432,5 +447,6 @@ namespace kelio_client
     private System.Windows.Forms.Button cancelButton;
     private System.Windows.Forms.Panel panel2;
     private System.Windows.Forms.Button saveButton;
+    private System.Windows.Forms.CheckBox autoReminderCheckBox;
   }
 }
