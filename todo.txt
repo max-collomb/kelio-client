@@ -1,2 +1,1 @@
-- gérer l'échec d'authentification (mdp expiré)
 - mise à jour automatique

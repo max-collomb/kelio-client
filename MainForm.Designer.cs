@@ -45,14 +45,26 @@ namespace kelio_client
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.panel2 = new System.Windows.Forms.Panel();
+      this.reminderDropDownBtn = new System.Windows.Forms.Button();
       this.panel4 = new System.Windows.Forms.Panel();
+      this.refreshButton = new System.Windows.Forms.Button();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.paramButton = new System.Windows.Forms.Button();
       this.kelioUrlLabel = new System.Windows.Forms.LinkLabel();
       this.panel3 = new System.Windows.Forms.Panel();
+      this.reminderPanel = new System.Windows.Forms.Panel();
+      this.reminderFeedbackLabel = new System.Windows.Forms.Label();
+      this.panel9 = new System.Windows.Forms.Panel();
+      this.reminderTextBox = new System.Windows.Forms.TextBox();
+      this.panel8 = new System.Windows.Forms.Panel();
+      this.validateReminderBtn = new System.Windows.Forms.Button();
+      this.panel5 = new System.Windows.Forms.Panel();
+      this.cancelReminderBtn = new System.Windows.Forms.Button();
       this.feedbackLabel = new System.Windows.Forms.Label();
       this.progressBar = new System.Windows.Forms.ProgressBar();
       this.clockInOutButton = new System.Windows.Forms.Button();
       this.panel6 = new System.Windows.Forms.Panel();
+      this.inOutBox = new kelio_client.ExRichTextBox();
       this.panel7 = new System.Windows.Forms.Panel();
       this.label10 = new System.Windows.Forms.Label();
       this.totalDiffLabel = new System.Windows.Forms.Label();
@@ -60,24 +72,12 @@ namespace kelio_client
       this.weekDiffTitleLabel = new System.Windows.Forms.Label();
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-      this.reminderPanel = new System.Windows.Forms.Panel();
-      this.cancelReminderBtn = new System.Windows.Forms.Button();
-      this.validateReminderBtn = new System.Windows.Forms.Button();
-      this.refreshButton = new System.Windows.Forms.Button();
-      this.paramButton = new System.Windows.Forms.Button();
-      this.reminderFeedbackLabel = new System.Windows.Forms.Label();
-      this.panel5 = new System.Windows.Forms.Panel();
-      this.panel8 = new System.Windows.Forms.Panel();
-      this.reminderDropDownBtn = new System.Windows.Forms.Button();
-      this.panel9 = new System.Windows.Forms.Panel();
-      this.reminderTextBox = new System.Windows.Forms.TextBox();
-      this.inOutBox = new kelio_client.ExRichTextBox();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
-      this.panel6.SuspendLayout();
-      this.panel7.SuspendLayout();
       this.reminderPanel.SuspendLayout();
       this.panel9.SuspendLayout();
+      this.panel6.SuspendLayout();
+      this.panel7.SuspendLayout();
       this.SuspendLayout();
       // 
       // panel2
@@ -96,6 +96,22 @@ namespace kelio_client
       this.panel2.Size = new System.Drawing.Size(260, 26);
       this.panel2.TabIndex = 9;
       // 
+      // reminderDropDownBtn
+      // 
+      this.reminderDropDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+      this.reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
+      this.reminderDropDownBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.reminderDropDownBtn.Dock = System.Windows.Forms.DockStyle.Right;
+      this.reminderDropDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.reminderDropDownBtn.Location = new System.Drawing.Point(176, 4);
+      this.reminderDropDownBtn.Margin = new System.Windows.Forms.Padding(0);
+      this.reminderDropDownBtn.Name = "reminderDropDownBtn";
+      this.reminderDropDownBtn.Size = new System.Drawing.Size(22, 22);
+      this.reminderDropDownBtn.TabIndex = 8;
+      this.toolTip.SetToolTip(this.reminderDropDownBtn, "Définir un rappel");
+      this.reminderDropDownBtn.UseVisualStyleBackColor = false;
+      this.reminderDropDownBtn.Click += new System.EventHandler(this.reminderDropDownBtn_Click);
+      // 
       // panel4
       // 
       this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -105,6 +121,22 @@ namespace kelio_client
       this.panel4.Size = new System.Drawing.Size(5, 22);
       this.panel4.TabIndex = 5;
       // 
+      // refreshButton
+      // 
+      this.refreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+      this.refreshButton.BackgroundImage = global::kelio_client.Properties.Resources.refresh;
+      this.refreshButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.refreshButton.Dock = System.Windows.Forms.DockStyle.Right;
+      this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.refreshButton.Location = new System.Drawing.Point(203, 4);
+      this.refreshButton.Margin = new System.Windows.Forms.Padding(0);
+      this.refreshButton.Name = "refreshButton";
+      this.refreshButton.Size = new System.Drawing.Size(22, 22);
+      this.refreshButton.TabIndex = 7;
+      this.toolTip.SetToolTip(this.refreshButton, "Rafraîchir");
+      this.refreshButton.UseVisualStyleBackColor = false;
+      this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+      // 
       // panel1
       // 
       this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -113,6 +145,22 @@ namespace kelio_client
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(5, 22);
       this.panel1.TabIndex = 4;
+      // 
+      // paramButton
+      // 
+      this.paramButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+      this.paramButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paramButton.BackgroundImage")));
+      this.paramButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.paramButton.Dock = System.Windows.Forms.DockStyle.Right;
+      this.paramButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.paramButton.Location = new System.Drawing.Point(230, 4);
+      this.paramButton.Margin = new System.Windows.Forms.Padding(0);
+      this.paramButton.Name = "paramButton";
+      this.paramButton.Size = new System.Drawing.Size(22, 22);
+      this.paramButton.TabIndex = 3;
+      this.toolTip.SetToolTip(this.paramButton, "Options");
+      this.paramButton.UseVisualStyleBackColor = false;
+      this.paramButton.Click += new System.EventHandler(this.paramButton_Click);
       // 
       // kelioUrlLabel
       // 
@@ -143,6 +191,109 @@ namespace kelio_client
       this.panel3.Size = new System.Drawing.Size(260, 56);
       this.panel3.TabIndex = 10;
       // 
+      // reminderPanel
+      // 
+      this.reminderPanel.Controls.Add(this.reminderFeedbackLabel);
+      this.reminderPanel.Controls.Add(this.panel9);
+      this.reminderPanel.Controls.Add(this.panel8);
+      this.reminderPanel.Controls.Add(this.validateReminderBtn);
+      this.reminderPanel.Controls.Add(this.panel5);
+      this.reminderPanel.Controls.Add(this.cancelReminderBtn);
+      this.reminderPanel.Location = new System.Drawing.Point(0, 0);
+      this.reminderPanel.Name = "reminderPanel";
+      this.reminderPanel.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+      this.reminderPanel.Size = new System.Drawing.Size(250, 30);
+      this.reminderPanel.TabIndex = 6;
+      this.reminderPanel.Visible = false;
+      // 
+      // reminderFeedbackLabel
+      // 
+      this.reminderFeedbackLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.reminderFeedbackLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.reminderFeedbackLabel.ForeColor = System.Drawing.Color.Red;
+      this.reminderFeedbackLabel.Location = new System.Drawing.Point(0, 4);
+      this.reminderFeedbackLabel.Name = "reminderFeedbackLabel";
+      this.reminderFeedbackLabel.Size = new System.Drawing.Size(156, 26);
+      this.reminderFeedbackLabel.TabIndex = 6;
+      this.reminderFeedbackLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // panel9
+      // 
+      this.panel9.AutoSize = true;
+      this.panel9.Controls.Add(this.reminderTextBox);
+      this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
+      this.panel9.Location = new System.Drawing.Point(156, 4);
+      this.panel9.Margin = new System.Windows.Forms.Padding(0);
+      this.panel9.Name = "panel9";
+      this.panel9.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+      this.panel9.Size = new System.Drawing.Size(40, 26);
+      this.panel9.TabIndex = 9;
+      // 
+      // reminderTextBox
+      // 
+      this.reminderTextBox.BackColor = System.Drawing.Color.Black;
+      this.reminderTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.reminderTextBox.Dock = System.Windows.Forms.DockStyle.Right;
+      this.reminderTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.reminderTextBox.ForeColor = System.Drawing.Color.White;
+      this.reminderTextBox.Location = new System.Drawing.Point(0, 2);
+      this.reminderTextBox.MaxLength = 5;
+      this.reminderTextBox.Name = "reminderTextBox";
+      this.reminderTextBox.Size = new System.Drawing.Size(40, 23);
+      this.reminderTextBox.TabIndex = 1;
+      this.reminderTextBox.Text = "17:36";
+      this.reminderTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.reminderTextBox_KeyDown);
+      // 
+      // panel8
+      // 
+      this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+      this.panel8.Location = new System.Drawing.Point(196, 4);
+      this.panel8.Margin = new System.Windows.Forms.Padding(0);
+      this.panel8.Name = "panel8";
+      this.panel8.Size = new System.Drawing.Size(5, 26);
+      this.panel8.TabIndex = 8;
+      // 
+      // validateReminderBtn
+      // 
+      this.validateReminderBtn.BackColor = System.Drawing.Color.Black;
+      this.validateReminderBtn.BackgroundImage = global::kelio_client.Properties.Resources.check;
+      this.validateReminderBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.validateReminderBtn.Dock = System.Windows.Forms.DockStyle.Right;
+      this.validateReminderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.validateReminderBtn.Location = new System.Drawing.Point(201, 4);
+      this.validateReminderBtn.Margin = new System.Windows.Forms.Padding(0);
+      this.validateReminderBtn.Name = "validateReminderBtn";
+      this.validateReminderBtn.Size = new System.Drawing.Size(22, 26);
+      this.validateReminderBtn.TabIndex = 4;
+      this.toolTip.SetToolTip(this.validateReminderBtn, "Valider rappel");
+      this.validateReminderBtn.UseVisualStyleBackColor = false;
+      this.validateReminderBtn.Click += new System.EventHandler(this.validateReminderBtn_Click);
+      // 
+      // panel5
+      // 
+      this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+      this.panel5.Location = new System.Drawing.Point(223, 4);
+      this.panel5.Margin = new System.Windows.Forms.Padding(0);
+      this.panel5.Name = "panel5";
+      this.panel5.Size = new System.Drawing.Size(5, 26);
+      this.panel5.TabIndex = 7;
+      // 
+      // cancelReminderBtn
+      // 
+      this.cancelReminderBtn.BackColor = System.Drawing.Color.Black;
+      this.cancelReminderBtn.BackgroundImage = global::kelio_client.Properties.Resources.close;
+      this.cancelReminderBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+      this.cancelReminderBtn.Dock = System.Windows.Forms.DockStyle.Right;
+      this.cancelReminderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.cancelReminderBtn.Location = new System.Drawing.Point(228, 4);
+      this.cancelReminderBtn.Margin = new System.Windows.Forms.Padding(0);
+      this.cancelReminderBtn.Name = "cancelReminderBtn";
+      this.cancelReminderBtn.Size = new System.Drawing.Size(22, 26);
+      this.cancelReminderBtn.TabIndex = 5;
+      this.toolTip.SetToolTip(this.cancelReminderBtn, "Annuler rappel");
+      this.cancelReminderBtn.UseVisualStyleBackColor = false;
+      this.cancelReminderBtn.Click += new System.EventHandler(this.cancelReminderBtn_Click);
+      // 
       // feedbackLabel
       // 
       this.feedbackLabel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -150,7 +301,7 @@ namespace kelio_client
       this.feedbackLabel.ForeColor = System.Drawing.Color.Gray;
       this.feedbackLabel.Location = new System.Drawing.Point(8, 13);
       this.feedbackLabel.Name = "feedbackLabel";
-      this.feedbackLabel.Size = new System.Drawing.Size(195, 2);
+      this.feedbackLabel.Size = new System.Drawing.Size(244, 2);
       this.feedbackLabel.TabIndex = 5;
       this.feedbackLabel.Text = "POST /open/j_spring_security_check";
       this.feedbackLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -198,6 +349,25 @@ namespace kelio_client
       this.panel6.Size = new System.Drawing.Size(260, 107);
       this.panel6.TabIndex = 12;
       // 
+      // inOutBox
+      // 
+      this.inOutBox.BackColor = System.Drawing.Color.Black;
+      this.inOutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.inOutBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+      this.inOutBox.DetectUrls = false;
+      this.inOutBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.inOutBox.ForeColor = System.Drawing.Color.White;
+      this.inOutBox.Location = new System.Drawing.Point(8, 0);
+      this.inOutBox.Name = "inOutBox";
+      this.inOutBox.ReadOnly = true;
+      this.inOutBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+      this.inOutBox.ShortcutsEnabled = false;
+      this.inOutBox.Size = new System.Drawing.Size(110, 107);
+      this.inOutBox.TabIndex = 2;
+      this.inOutBox.TabStop = false;
+      this.inOutBox.Text = "";
+      this.inOutBox.WordWrap = false;
+      // 
       // panel7
       // 
       this.panel7.Controls.Add(this.label10);
@@ -207,7 +377,7 @@ namespace kelio_client
       this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
       this.panel7.Location = new System.Drawing.Point(185, 0);
       this.panel7.Name = "panel7";
-      this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 8, 4);
+      this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 8, 10);
       this.panel7.Size = new System.Drawing.Size(75, 107);
       this.panel7.TabIndex = 1;
       // 
@@ -216,7 +386,7 @@ namespace kelio_client
       this.label10.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.label10.Font = new System.Drawing.Font("Segoe UI", 9F);
       this.label10.ForeColor = System.Drawing.Color.Silver;
-      this.label10.Location = new System.Drawing.Point(0, 63);
+      this.label10.Location = new System.Drawing.Point(0, 57);
       this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.label10.Name = "label10";
       this.label10.Size = new System.Drawing.Size(67, 20);
@@ -230,7 +400,7 @@ namespace kelio_client
       this.totalDiffLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.totalDiffLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
       this.totalDiffLabel.ForeColor = System.Drawing.Color.Orange;
-      this.totalDiffLabel.Location = new System.Drawing.Point(0, 83);
+      this.totalDiffLabel.Location = new System.Drawing.Point(0, 77);
       this.totalDiffLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
       this.totalDiffLabel.Name = "totalDiffLabel";
       this.totalDiffLabel.Size = new System.Drawing.Size(67, 20);
@@ -271,176 +441,6 @@ namespace kelio_client
       this.timer.Interval = 1000;
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
       // 
-      // reminderPanel
-      // 
-      this.reminderPanel.Controls.Add(this.reminderFeedbackLabel);
-      this.reminderPanel.Controls.Add(this.panel9);
-      this.reminderPanel.Controls.Add(this.panel8);
-      this.reminderPanel.Controls.Add(this.validateReminderBtn);
-      this.reminderPanel.Controls.Add(this.panel5);
-      this.reminderPanel.Controls.Add(this.cancelReminderBtn);
-      this.reminderPanel.Location = new System.Drawing.Point(0, 0);
-      this.reminderPanel.Name = "reminderPanel";
-      this.reminderPanel.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-      this.reminderPanel.Size = new System.Drawing.Size(250, 30);
-      this.reminderPanel.TabIndex = 6;
-      this.reminderPanel.Visible = false;
-      // 
-      // cancelReminderBtn
-      // 
-      this.cancelReminderBtn.BackColor = System.Drawing.Color.Black;
-      this.cancelReminderBtn.BackgroundImage = global::kelio_client.Properties.Resources.close;
-      this.cancelReminderBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.cancelReminderBtn.Dock = System.Windows.Forms.DockStyle.Right;
-      this.cancelReminderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.cancelReminderBtn.Location = new System.Drawing.Point(228, 4);
-      this.cancelReminderBtn.Margin = new System.Windows.Forms.Padding(0);
-      this.cancelReminderBtn.Name = "cancelReminderBtn";
-      this.cancelReminderBtn.Size = new System.Drawing.Size(22, 26);
-      this.cancelReminderBtn.TabIndex = 5;
-      this.toolTip.SetToolTip(this.cancelReminderBtn, "Annuler rappel");
-      this.cancelReminderBtn.UseVisualStyleBackColor = false;
-      this.cancelReminderBtn.Click += new System.EventHandler(this.cancelReminderBtn_Click);
-      // 
-      // validateReminderBtn
-      // 
-      this.validateReminderBtn.BackColor = System.Drawing.Color.Black;
-      this.validateReminderBtn.BackgroundImage = global::kelio_client.Properties.Resources.check;
-      this.validateReminderBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.validateReminderBtn.Dock = System.Windows.Forms.DockStyle.Right;
-      this.validateReminderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.validateReminderBtn.Location = new System.Drawing.Point(201, 4);
-      this.validateReminderBtn.Margin = new System.Windows.Forms.Padding(0);
-      this.validateReminderBtn.Name = "validateReminderBtn";
-      this.validateReminderBtn.Size = new System.Drawing.Size(22, 26);
-      this.validateReminderBtn.TabIndex = 4;
-      this.toolTip.SetToolTip(this.validateReminderBtn, "Valider rappel");
-      this.validateReminderBtn.UseVisualStyleBackColor = false;
-      this.validateReminderBtn.Click += new System.EventHandler(this.validateReminderBtn_Click);
-      // 
-      // refreshButton
-      // 
-      this.refreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-      this.refreshButton.BackgroundImage = global::kelio_client.Properties.Resources.refresh;
-      this.refreshButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.refreshButton.Dock = System.Windows.Forms.DockStyle.Right;
-      this.refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.refreshButton.Location = new System.Drawing.Point(203, 4);
-      this.refreshButton.Margin = new System.Windows.Forms.Padding(0);
-      this.refreshButton.Name = "refreshButton";
-      this.refreshButton.Size = new System.Drawing.Size(22, 22);
-      this.refreshButton.TabIndex = 7;
-      this.toolTip.SetToolTip(this.refreshButton, "Rafraîchir");
-      this.refreshButton.UseVisualStyleBackColor = false;
-      this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
-      // 
-      // paramButton
-      // 
-      this.paramButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-      this.paramButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paramButton.BackgroundImage")));
-      this.paramButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.paramButton.Dock = System.Windows.Forms.DockStyle.Right;
-      this.paramButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.paramButton.Location = new System.Drawing.Point(230, 4);
-      this.paramButton.Margin = new System.Windows.Forms.Padding(0);
-      this.paramButton.Name = "paramButton";
-      this.paramButton.Size = new System.Drawing.Size(22, 22);
-      this.paramButton.TabIndex = 3;
-      this.toolTip.SetToolTip(this.paramButton, "Options");
-      this.paramButton.UseVisualStyleBackColor = false;
-      this.paramButton.Click += new System.EventHandler(this.paramButton_Click);
-      // 
-      // reminderFeedbackLabel
-      // 
-      this.reminderFeedbackLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.reminderFeedbackLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.reminderFeedbackLabel.ForeColor = System.Drawing.Color.Red;
-      this.reminderFeedbackLabel.Location = new System.Drawing.Point(0, 3);
-      this.reminderFeedbackLabel.Name = "reminderFeedbackLabel";
-      this.reminderFeedbackLabel.Size = new System.Drawing.Size(125, 21);
-      this.reminderFeedbackLabel.TabIndex = 6;
-      this.reminderFeedbackLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // panel5
-      // 
-      this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-      this.panel5.Location = new System.Drawing.Point(223, 4);
-      this.panel5.Margin = new System.Windows.Forms.Padding(0);
-      this.panel5.Name = "panel5";
-      this.panel5.Size = new System.Drawing.Size(5, 26);
-      this.panel5.TabIndex = 7;
-      // 
-      // panel8
-      // 
-      this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-      this.panel8.Location = new System.Drawing.Point(196, 4);
-      this.panel8.Margin = new System.Windows.Forms.Padding(0);
-      this.panel8.Name = "panel8";
-      this.panel8.Size = new System.Drawing.Size(5, 26);
-      this.panel8.TabIndex = 8;
-      // 
-      // reminderDropDownBtn
-      // 
-      this.reminderDropDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-      this.reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
-      this.reminderDropDownBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-      this.reminderDropDownBtn.Dock = System.Windows.Forms.DockStyle.Right;
-      this.reminderDropDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.reminderDropDownBtn.Location = new System.Drawing.Point(176, 4);
-      this.reminderDropDownBtn.Margin = new System.Windows.Forms.Padding(0);
-      this.reminderDropDownBtn.Name = "reminderDropDownBtn";
-      this.reminderDropDownBtn.Size = new System.Drawing.Size(22, 22);
-      this.reminderDropDownBtn.TabIndex = 8;
-      this.toolTip.SetToolTip(this.reminderDropDownBtn, "Définir un rappel");
-      this.reminderDropDownBtn.UseVisualStyleBackColor = false;
-      this.reminderDropDownBtn.Click += new System.EventHandler(this.reminderDropDownBtn_Click);
-      // 
-      // panel9
-      // 
-      this.panel9.AutoSize = true;
-      this.panel9.Controls.Add(this.reminderTextBox);
-      this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-      this.panel9.Location = new System.Drawing.Point(156, 4);
-      this.panel9.Margin = new System.Windows.Forms.Padding(0);
-      this.panel9.Name = "panel9";
-      this.panel9.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-      this.panel9.Size = new System.Drawing.Size(40, 26);
-      this.panel9.TabIndex = 9;
-      // 
-      // reminderTextBox
-      // 
-      this.reminderTextBox.BackColor = System.Drawing.Color.Black;
-      this.reminderTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.reminderTextBox.Dock = System.Windows.Forms.DockStyle.Right;
-      this.reminderTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.reminderTextBox.ForeColor = System.Drawing.Color.White;
-      this.reminderTextBox.Location = new System.Drawing.Point(0, 2);
-      this.reminderTextBox.MaxLength = 5;
-      this.reminderTextBox.Name = "reminderTextBox";
-      this.reminderTextBox.Size = new System.Drawing.Size(40, 23);
-      this.reminderTextBox.TabIndex = 1;
-      this.reminderTextBox.Text = "17:36";
-      this.reminderTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.reminderTextBox_KeyDown);
-      // 
-      // inOutBox
-      // 
-      this.inOutBox.BackColor = System.Drawing.Color.Black;
-      this.inOutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.inOutBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-      this.inOutBox.DetectUrls = false;
-      this.inOutBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.inOutBox.ForeColor = System.Drawing.Color.White;
-      this.inOutBox.Location = new System.Drawing.Point(8, 0);
-      this.inOutBox.Name = "inOutBox";
-      this.inOutBox.ReadOnly = true;
-      this.inOutBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-      this.inOutBox.ShortcutsEnabled = false;
-      this.inOutBox.Size = new System.Drawing.Size(110, 107);
-      this.inOutBox.TabIndex = 2;
-      this.inOutBox.TabStop = false;
-      this.inOutBox.Text = "";
-      this.inOutBox.WordWrap = false;
-      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,12 +465,12 @@ namespace kelio_client
       this.panel2.ResumeLayout(false);
       this.panel2.PerformLayout();
       this.panel3.ResumeLayout(false);
-      this.panel6.ResumeLayout(false);
-      this.panel7.ResumeLayout(false);
       this.reminderPanel.ResumeLayout(false);
       this.reminderPanel.PerformLayout();
       this.panel9.ResumeLayout(false);
       this.panel9.PerformLayout();
+      this.panel6.ResumeLayout(false);
+      this.panel7.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
