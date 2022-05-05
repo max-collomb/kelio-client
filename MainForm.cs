@@ -245,10 +245,21 @@ namespace kelio_client
         {
           remindH = DateTime.Now.Hour - Int32.Parse(weekDiff.Split(':')[0]);
           remindM = DateTime.Now.Minute + Int32.Parse(weekDiff.Split(':')[1]);
-        } else
+        }
+        else
         {
           remindH = DateTime.Now.Hour + Int32.Parse(weekDiff.Split(':')[0]);
           remindM = DateTime.Now.Minute - Int32.Parse(weekDiff.Split(':')[1]);
+        }
+        while (remindM > 59)
+        {
+          remindH++;
+          remindM -= 60;
+        }
+        while (remindM < 0)
+        {
+          remindH--;
+          remindM += 60;
         }
         int endOfDayH = remindH.GetValueOrDefault(DateTime.Now.Hour);
         int endOfDayM = remindM.GetValueOrDefault(DateTime.Now.Minute);
