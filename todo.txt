@@ -1,1 +1,5 @@
+-refactoring de la gestion des HH:MM et +-HH:MM
+- C/D semaine et total en couleur
+	* orange si < 0
+	* vert si >= 0
 - mise à jour automatique
