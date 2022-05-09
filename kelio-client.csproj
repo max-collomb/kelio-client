@@ -57,6 +57,9 @@
   <ItemGroup>
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="FlashWindowUtil.cs" />
+    <Compile Include="MainFormSnap.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ParamsForm.cs">
       <SubType>Form</SubType>
     </Compile>

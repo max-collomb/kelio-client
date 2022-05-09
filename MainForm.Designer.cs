@@ -64,7 +64,6 @@ namespace kelio_client
       this.progressBar = new System.Windows.Forms.ProgressBar();
       this.clockInOutButton = new System.Windows.Forms.Button();
       this.panel6 = new System.Windows.Forms.Panel();
-      this.inOutBox = new kelio_client.ExRichTextBox();
       this.panel7 = new System.Windows.Forms.Panel();
       this.label10 = new System.Windows.Forms.Label();
       this.totalDiffLabel = new System.Windows.Forms.Label();
@@ -72,6 +71,7 @@ namespace kelio_client
       this.weekDiffTitleLabel = new System.Windows.Forms.Label();
       this.timer = new System.Windows.Forms.Timer(this.components);
       this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+      this.inOutBox = new kelio_client.ExRichTextBox();
       this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
       this.reminderPanel.SuspendLayout();
@@ -349,25 +349,6 @@ namespace kelio_client
       this.panel6.Size = new System.Drawing.Size(260, 107);
       this.panel6.TabIndex = 12;
       // 
-      // inOutBox
-      // 
-      this.inOutBox.BackColor = System.Drawing.Color.Black;
-      this.inOutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.inOutBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-      this.inOutBox.DetectUrls = false;
-      this.inOutBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.inOutBox.ForeColor = System.Drawing.Color.White;
-      this.inOutBox.Location = new System.Drawing.Point(8, 0);
-      this.inOutBox.Name = "inOutBox";
-      this.inOutBox.ReadOnly = true;
-      this.inOutBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-      this.inOutBox.ShortcutsEnabled = false;
-      this.inOutBox.Size = new System.Drawing.Size(110, 107);
-      this.inOutBox.TabIndex = 2;
-      this.inOutBox.TabStop = false;
-      this.inOutBox.Text = "";
-      this.inOutBox.WordWrap = false;
-      // 
       // panel7
       // 
       this.panel7.Controls.Add(this.label10);
@@ -440,6 +421,25 @@ namespace kelio_client
       this.timer.Enabled = true;
       this.timer.Interval = 1000;
       this.timer.Tick += new System.EventHandler(this.timer_Tick);
+      // 
+      // inOutBox
+      // 
+      this.inOutBox.BackColor = System.Drawing.Color.Black;
+      this.inOutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.inOutBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+      this.inOutBox.DetectUrls = false;
+      this.inOutBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.inOutBox.ForeColor = System.Drawing.Color.White;
+      this.inOutBox.Location = new System.Drawing.Point(8, 0);
+      this.inOutBox.Name = "inOutBox";
+      this.inOutBox.ReadOnly = true;
+      this.inOutBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+      this.inOutBox.ShortcutsEnabled = false;
+      this.inOutBox.Size = new System.Drawing.Size(110, 107);
+      this.inOutBox.TabIndex = 2;
+      this.inOutBox.TabStop = false;
+      this.inOutBox.Text = "";
+      this.inOutBox.WordWrap = false;
       // 
       // MainForm
       // 

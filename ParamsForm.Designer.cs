@@ -54,6 +54,7 @@ namespace kelio_client
       this.saveButton = new System.Windows.Forms.Button();
       this.autoReminderCheckBox = new System.Windows.Forms.CheckBox();
       this.label10 = new System.Windows.Forms.Label();
+      this.windowSnappingCheckBox = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.mondayNumericUpDown)).BeginInit();
@@ -340,7 +341,7 @@ namespace kelio_client
       this.panel1.Controls.Add(this.panel2);
       this.panel1.Controls.Add(this.saveButton);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.panel1.Location = new System.Drawing.Point(10, 245);
+      this.panel1.Location = new System.Drawing.Point(10, 268);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(336, 30);
       this.panel1.TabIndex = 3;
@@ -391,7 +392,7 @@ namespace kelio_client
       // label10
       // 
       this.label10.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.label10.Location = new System.Drawing.Point(10, 222);
+      this.label10.Location = new System.Drawing.Point(10, 245);
       this.label10.Name = "label10";
       this.label10.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
       this.label10.Size = new System.Drawing.Size(336, 23);
@@ -399,13 +400,26 @@ namespace kelio_client
       this.label10.Text = "kelio-client v0.2";
       this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
+      // windowSnappingCheckBox
+      // 
+      this.windowSnappingCheckBox.AutoSize = true;
+      this.windowSnappingCheckBox.Dock = System.Windows.Forms.DockStyle.Top;
+      this.windowSnappingCheckBox.Location = new System.Drawing.Point(10, 210);
+      this.windowSnappingCheckBox.Name = "windowSnappingCheckBox";
+      this.windowSnappingCheckBox.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+      this.windowSnappingCheckBox.Size = new System.Drawing.Size(336, 22);
+      this.windowSnappingCheckBox.TabIndex = 6;
+      this.windowSnappingCheckBox.Text = "Aimanter la fenêtre aux bords de l\'écran";
+      this.windowSnappingCheckBox.UseVisualStyleBackColor = true;
+      // 
       // ParamsForm
       // 
       this.AcceptButton = this.saveButton;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cancelButton;
-      this.ClientSize = new System.Drawing.Size(356, 285);
+      this.ClientSize = new System.Drawing.Size(356, 308);
+      this.Controls.Add(this.windowSnappingCheckBox);
       this.Controls.Add(this.label10);
       this.Controls.Add(this.autoReminderCheckBox);
       this.Controls.Add(this.panel1);
@@ -462,5 +476,6 @@ namespace kelio_client
     private System.Windows.Forms.Button saveButton;
     private System.Windows.Forms.CheckBox autoReminderCheckBox;
     private System.Windows.Forms.Label label10;
+    private System.Windows.Forms.CheckBox windowSnappingCheckBox;
   }
 }

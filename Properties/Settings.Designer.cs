@@ -142,5 +142,17 @@ namespace kelio_client.Properties {
                 this["AutoReminder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WindowSnapping {
+            get {
+                return ((bool)(this["WindowSnapping"]));
+            }
+            set {
+                this["WindowSnapping"] = value;
+            }
+        }
     }
 }
