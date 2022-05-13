@@ -15,7 +15,7 @@ namespace kelio_client
     public int Minute { get; set; } = 0;
     public HourMinuteInterval(string hmiStr)
     {
-      Match match = new Regex(@"([0-9]{1,2})[:h]([0-9]{1,2})").Match(hmiStr);
+      Match match = new Regex(@"(\-?[0-9]{1,2})[:h]([0-9]{1,2})").Match(hmiStr);
       if (match.Success)
       {
         Hour = Int32.Parse(match.Groups[1].Value);
