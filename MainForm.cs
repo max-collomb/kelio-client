@@ -285,21 +285,24 @@ namespace kelio_client
         }
       }
 
-      string totalDiff = new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value; ;
+      HourMinuteInterval totalDiff = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
       if (clockInCount == clockOutCount && DateTime.Now.Hour >= 16)
       {
         weekDiffLabel.Text = weekDiff.ToString();
+        weekDiffLabel.ForeColor = weekDiff.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
         toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire");
         toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire");
       }
       else
       {
         weekDiffLabel.Text = weekDiffYesterday.ToString();
+        weekDiffLabel.ForeColor = weekDiffYesterday.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
         toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire arrêté à la veille");
         toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire arrêté à la veille");
       }
 
-      totalDiffLabel.Text = (totalDiff.StartsWith("-") ? "" : "+") + totalDiff;
+      totalDiffLabel.Text = totalDiff.ToString();
+      totalDiffLabel.ForeColor = totalDiff.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
     }
 
     private async Task ClockInOut()
