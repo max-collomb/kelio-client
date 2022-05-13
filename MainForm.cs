@@ -240,7 +240,7 @@ namespace kelio_client
       if (clockInCount > clockOutCount)
       {
         remind = new HourMinute(DateTime.Now).Remove(weekDiff);
-        HourMinute endOfDay = null;
+        HourMinute endOfDay = new HourMinute(remind);
         if (DateTime.Now.Hour < 13)
         {
           int pause = GetPause(DateTime.Now.DayOfWeek);
