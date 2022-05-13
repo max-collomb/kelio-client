@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="FlashWindowUtil.cs" />
+    <Compile Include="HoursMinutes.cs" />
     <Compile Include="MainFormSnap.cs">
       <SubType>Form</SubType>
     </Compile>

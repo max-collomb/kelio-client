@@ -19,8 +19,7 @@ namespace kelio_client
   public partial class MainForm : Form
   {
     private bool reminderEnabled = false;
-    private int? reminderH = null;
-    private int? reminderM = null;
+    private HourMinute reminder = null;
     private int? date = null;
 
     private void AppendText(string text, Color color, bool newLine)
@@ -213,7 +212,7 @@ namespace kelio_client
       inOutBox.Text = "";
       int clockInCount = 0;
       int clockOutCount = 0;
-      string lastClockOut = "";
+      HourMinute lastClockOut = null;
       foreach(Match match in matches)
       {
         if (match.Groups[2].Value == "Entrée")
@@ -225,138 +224,85 @@ namespace kelio_client
         else
         {
           clockOutCount++;
-          lastClockOut = match.Groups[1].Value;
-          AppendText(lastClockOut, Color.Orange, true);
+          lastClockOut = new HourMinute(match.Groups[1].Value);
+          AppendText(lastClockOut.ToString(), Color.Orange, true);
         }
       }
 
-      string weekDiff = new Regex(@"<li>Votre crédit \/ débit hebdomadaire est de (.*)<\/li>").Match(htmlContent).Groups[1].Value;
-      string weekDiffYesterday = new Regex(@"<li>Votre crédit \/ débit hebdomadaire arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value;
+      HourMinuteInterval weekDiff = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit hebdomadaire est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
+      HourMinuteInterval weekDiffYesterday = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit hebdomadaire arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
 
       if (clockInCount == 0)
         BeepBeep();
 
-      int? remindH = null;
-      int? remindM = null;
+      HourMinute remind = null;
 
       if (clockInCount > clockOutCount)
       {
-        if (weekDiff.StartsWith("-"))
-        {
-          remindH = DateTime.Now.Hour - Int32.Parse(weekDiff.Split(':')[0]);
-          remindM = DateTime.Now.Minute + Int32.Parse(weekDiff.Split(':')[1]);
-        }
-        else
-        {
-          remindH = DateTime.Now.Hour + Int32.Parse(weekDiff.Split(':')[0]);
-          remindM = DateTime.Now.Minute - Int32.Parse(weekDiff.Split(':')[1]);
-        }
-        while (remindM > 59)
-        {
-          remindH++;
-          remindM -= 60;
-        }
-        while (remindM < 0)
-        {
-          remindH--;
-          remindM += 60;
-        }
-        int endOfDayH = remindH.GetValueOrDefault(DateTime.Now.Hour);
-        int endOfDayM = remindM.GetValueOrDefault(DateTime.Now.Minute);
+        remind = new HourMinute(DateTime.Now).Remove(weekDiff);
+        HourMinute endOfDay = new HourMinute(remind);
         if (DateTime.Now.Hour < 13)
         {
           int pause = GetPause(DateTime.Now.DayOfWeek);
           if (pause > 0)
           {
-            endOfDayH = remindH.GetValueOrDefault(0);
-            endOfDayM = remindM.GetValueOrDefault(0) + pause;
-            if (pause > 105)
-            {
-              remindH = 12;
-              remindM = 0;
-              AppendText("12:00", Color.FromArgb(96, 96, 96), true);
-              AppendText((12 + (int)Math.Floor((float)pause / 60)) + ":" + (pause % 60).ToString("00"), Color.FromArgb(96, 96, 96), false);
-            }
-            else
-            {
-              remindH = 12;
-              remindM = 15;
-              AppendText("12:15", Color.FromArgb(96, 96, 96), true);
-              AppendText((pause == 105 ? "14" : "13") + ":" + ((float)(pause - 45) % 60).ToString("00"), Color.FromArgb(96, 96, 96), false);
-            }
+            HourMinuteInterval pauseInterval = new HourMinuteInterval(pause);
+            endOfDay = remind.Add(pauseInterval);
+            remind = new HourMinute(12, (pause > 105) ? 0 : 15);
+            AppendText(remind.ToString(), Color.FromArgb(96, 96, 96), true);
+            AppendText(remind.Add(pauseInterval).ToString(), Color.FromArgb(96, 96, 96), false);
             AppendText(" - ", Color.White, false);
           }
         }
-        while (endOfDayM > 59)
-        {
-          endOfDayH++;
-          endOfDayM -= 60;
-        }
-        while (endOfDayM < 0)
-        {
-          endOfDayH--;
-          endOfDayM += 60;
-        }
-        AppendText(endOfDayH.ToString("00") + ":" + endOfDayM.ToString("00"), Color.FromArgb(96, 96, 96), true);
+        AppendText(endOfDay.ToString(), Color.FromArgb(96, 96, 96), true);
       }
       else
       {
-        if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 13 && lastClockOut != "")
+        if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 13 && lastClockOut != null)
         {
-          int nextClockInH = Int32.Parse(lastClockOut.Split(':')[0]);
-          int nextClockInM = Int32.Parse(lastClockOut.Split(':')[1]) + GetPause(DateTime.Now.DayOfWeek);
-          while (nextClockInM > 59)
+          HourMinute nextClockIn = lastClockOut.Add(new HourMinuteInterval(GetPause(DateTime.Now.DayOfWeek)));
+          if (nextClockIn.Hour > 13)
           {
-            nextClockInH++;
-            nextClockInM -= 60;
+            nextClockIn.Hour = 14;
+            nextClockIn.Minute = 0;
           }
-          if (nextClockInH > 13)
-          {
-            nextClockInH = 14;
-            nextClockInM = 0;
-          }
-          remindH = nextClockInH - Int32.Parse(weekDiff.Split(':')[0]);
-          remindM = nextClockInM + Int32.Parse(weekDiff.Split(':')[1]);
-          while (remindM > 59)
-          {
-            remindH++;
-            remindM -= 60;
-          }
-          AppendText(nextClockInH.ToString("00") + ":" + nextClockInM.ToString("00"), Color.FromArgb(96, 96, 96), false);
+          remind = nextClockIn.Remove(weekDiff);
+          AppendText(nextClockIn.ToString(), Color.FromArgb(96, 96, 96), false);
           AppendText(" - ", Color.White, false);
-          AppendText(remindH?.ToString("00") + ":" + remindM?.ToString("00"), Color.FromArgb(96, 96, 96), true);
-          remindH = nextClockInH;
-          remindM = nextClockInM;
+          AppendText(remind.ToString(), Color.FromArgb(96, 96, 96), true);
+          remind = nextClockIn;
         }
 
       }
-      if (remindM != null && remindH != null && !reminderEnabled)
+      if (remind != null && !reminderEnabled)
       {
-        reminderH = remindH;
-        reminderM = remindM;
+        reminder = remind;
         if (Properties.Settings.Default.AutoReminder)
         {
           reminderEnabled = true;
           reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_enabled;
-          toolTip.SetToolTip(reminderDropDownBtn, "Modifier / Annuler le rappel à " + reminderH?.ToString("00") + ":" + reminderM?.ToString("00"));
+          toolTip.SetToolTip(reminderDropDownBtn, "Modifier / Annuler le rappel à " + reminder.ToString());
         }
       }
 
-      string totalDiff = new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value; ;
+      HourMinuteInterval totalDiff = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
       if (clockInCount == clockOutCount && DateTime.Now.Hour >= 16)
       {
-        weekDiffLabel.Text = ((weekDiff.StartsWith("-") || weekDiff == "0:00") ? "" : "+") + weekDiff;
+        weekDiffLabel.Text = weekDiff.ToString();
+        weekDiffLabel.ForeColor = weekDiff.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
         toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire");
         toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire");
       }
       else
       {
-        weekDiffLabel.Text = ((weekDiffYesterday.StartsWith("-") || weekDiffYesterday == "0:00") ? "" : "+") + weekDiffYesterday;
+        weekDiffLabel.Text = weekDiffYesterday.ToString();
+        weekDiffLabel.ForeColor = weekDiffYesterday.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
         toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire arrêté à la veille");
         toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire arrêté à la veille");
       }
 
-      totalDiffLabel.Text = (totalDiff.StartsWith("-") ? "" : "+") + totalDiff;
+      totalDiffLabel.Text = totalDiff.ToString();
+      totalDiffLabel.ForeColor = totalDiff.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
     }
 
     private async Task ClockInOut()
@@ -449,10 +395,9 @@ namespace kelio_client
       this.Text = DateTime.Now.Hour.ToString("00") + ":"
                 + DateTime.Now.Minute.ToString("00") + ":"
                 + DateTime.Now.Second.ToString("00");
-      if (reminderEnabled && DateTime.Now.Hour == reminderH && DateTime.Now.Minute == reminderM)
+      if (reminderEnabled && reminder != null && DateTime.Now.Hour == reminder.Hour && DateTime.Now.Minute == reminder.Minute)
       {
-        reminderH = null;
-        reminderM = null;
+        reminder = null;
         reminderEnabled = false;
         reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_disabled;
         BeepBeep();
@@ -473,9 +418,9 @@ namespace kelio_client
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-      if (e.CloseReason == CloseReason.UserClosing && reminderEnabled && reminderH != null && reminderM != null)
+      if (e.CloseReason == CloseReason.UserClosing && reminderEnabled && reminder != null)
       {
-        if (MessageBox.Show("Un rappel est activé pour " + reminderH + ":" + reminderM + "\nQuitter ?", "Confirmer la fermeture", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+        if (MessageBox.Show("Un rappel est activé pour " + reminder.ToString() + "\nQuitter ?", "Confirmer la fermeture", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
           e.Cancel = true;
       }
       Properties.Settings.Default.WindowPosition = DesktopBounds;
@@ -532,13 +477,13 @@ namespace kelio_client
         clockInOutButton.Visible = false;
         reminderPanel.Visible = true;
         reminderFeedbackLabel.Text = "";
-        if (reminderH != null && reminderM != null)
+        if (reminder != null)
         {
-          reminderTextBox.Text = reminderH.GetValueOrDefault(0).ToString("00") + ":" + reminderM.GetValueOrDefault(0).ToString("00");
+          reminderTextBox.Text = reminder.ToString();
         }
         else
         {
-          reminderTextBox.Text = DateTime.Now.Hour.ToString("00") + ":" + DateTime.Now.Minute.ToString("00");
+          reminderTextBox.Text = new HourMinute(DateTime.Now).ToString();
         }
         
         reminderTextBox.Focus();
@@ -565,12 +510,11 @@ namespace kelio_client
       Match match = new Regex(@"([0-9]{1,2})[:h]([0-9]{1,2})").Match(reminderTextBox.Text);
       if (match.Success)
       {
-        reminderH = Int32.Parse(match.Groups[1].Value);
-        reminderM = Int32.Parse(match.Groups[2].Value);
+        reminder = new HourMinute(reminderTextBox.Text);
         reminderEnabled = true;
         reminderDropDownBtn.BackgroundImage = global::kelio_client.Properties.Resources.notif_enabled;
-        toolTip.SetToolTip(reminderDropDownBtn, "Modifier / Annuler le rappel à " + reminderH?.ToString("00") + ":" + reminderM?.ToString("00"));
-        reminderFeedbackLabel.Text = "Rappel à " + reminderH?.ToString("00") + ":" + reminderM?.ToString("00");
+        toolTip.SetToolTip(reminderDropDownBtn, "Modifier / Annuler le rappel à " + reminder.ToString());
+        reminderFeedbackLabel.Text = "Rappel à " + reminder.ToString();
         reminderFeedbackLabel.ForeColor = Color.MediumSeaGreen;
         await Task.Delay(2000);
         clockInOutButton.Visible = true;
