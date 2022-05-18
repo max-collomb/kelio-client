@@ -20,7 +20,7 @@ namespace kelio_client
       {
         Hour = Int32.Parse(match.Groups[1].Value);
         Minute = Int32.Parse(match.Groups[2].Value);
-        if (Hour < 0)
+        if (match.Groups[1].Value.StartsWith("-"))
         {
           Hour = Math.Abs(Hour);
           IsNegative = true;
