@@ -206,6 +206,42 @@ namespace kelio_client
       return 0;
     }
 
+    private int GetOffset(DayOfWeek dayOfWeek)
+    {
+      switch (dayOfWeek)
+      {
+        case DayOfWeek.Monday:
+          return Properties.Settings.Default.OffsetMonday;
+        case DayOfWeek.Tuesday:
+          return Properties.Settings.Default.OffsetTuesday;
+        case DayOfWeek.Wednesday:
+          return Properties.Settings.Default.OffsetWednesday;
+        case DayOfWeek.Thursday:
+          return Properties.Settings.Default.OffsetThursday;
+          // case DayOfWeek.Friday:
+          //   return Properties.Settings.Default.OffsetFriday;
+      }
+      return 0;
+    }
+
+    private int GetOffsetYesterday(DayOfWeek dayOfWeek)
+    {
+      switch (dayOfWeek)
+      {
+        // case DayOfWeek.Monday:
+        //  return Properties.Settings.Default.OffsetMonday;
+        case DayOfWeek.Tuesday:
+          return Properties.Settings.Default.OffsetMonday;
+        case DayOfWeek.Wednesday:
+          return Properties.Settings.Default.OffsetTuesday;
+        case DayOfWeek.Thursday:
+          return Properties.Settings.Default.OffsetWednesday;
+        case DayOfWeek.Friday:
+          return Properties.Settings.Default.OffsetThursday;
+      }
+      return 0;
+    }
+
     private void UpdateInfos(string htmlContent)
     {
       MatchCollection matches = new Regex(@"<td class='(?:tabImpair|tabPair)'>([0-9]{2}:[0-9]{2})<\/td>\s*?<td class='(?:tabImpair|tabPair)'>(.*?)<\/td>").Matches(htmlContent);
@@ -230,7 +266,11 @@ namespace kelio_client
       }
 
       HourMinuteInterval weekDiff = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit hebdomadaire est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
+      HourMinuteInterval weekDiff2 = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit hebdomadaire est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
       HourMinuteInterval weekDiffYesterday = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit hebdomadaire arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
+      weekDiff.Remove(GetOffset(DateTime.Now.DayOfWeek));
+      weekDiff2.Remove(GetOffset(DateTime.Now.DayOfWeek));
+      weekDiffYesterday.Remove(GetOffsetYesterday(DateTime.Now.DayOfWeek));
 
       if (clockInCount == 0)
         BeepBeep();
@@ -288,8 +328,8 @@ namespace kelio_client
       HourMinuteInterval totalDiff = new HourMinuteInterval(new Regex(@"<li>Votre crédit \/ débit total arrêté à la veille est de (.*)<\/li>").Match(htmlContent).Groups[1].Value);
       if (clockInCount == clockOutCount && DateTime.Now.Hour >= 16)
       {
-        weekDiffLabel.Text = weekDiff.ToString();
-        weekDiffLabel.ForeColor = weekDiff.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
+        weekDiffLabel.Text = weekDiff2.ToString();
+        weekDiffLabel.ForeColor = weekDiff2.IsNegative ? Color.LightCoral : Color.MediumSeaGreen;
         toolTip.SetToolTip(weekDiffTitleLabel, "Crédit / débit hebdomadaire");
         toolTip.SetToolTip(weekDiffLabel, "Crédit / débit hebdomadaire");
       }

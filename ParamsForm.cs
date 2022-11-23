@@ -27,6 +27,11 @@ namespace kelio_client
       Properties.Settings.Default.PauseWednesday = (int) wednesdayNumericUpDown.Value;
       Properties.Settings.Default.PauseThursday = (int) thursdayNumericUpDown.Value;
       Properties.Settings.Default.PauseFriday = (int) fridayNumericUpDown.Value;
+      Properties.Settings.Default.OffsetMonday = (int)mondayOffsetNumericUpDown.Value;
+      Properties.Settings.Default.OffsetTuesday = (int)tuesdayOffsetNumericUpDown.Value;
+      Properties.Settings.Default.OffsetWednesday = (int)wednesdayOffsetNumericUpDown.Value;
+      Properties.Settings.Default.OffsetThursday = (int)thursdayOffsetNumericUpDown.Value;
+      //Properties.Settings.Default.OffsetFriday = (int)fridayOffsetNumericUpDown.Value;
       Properties.Settings.Default.AutoReminder = autoReminderCheckBox.Checked;
       Properties.Settings.Default.WindowSnapping = windowSnappingCheckBox.Checked;
       Properties.Settings.Default.Save();
@@ -53,8 +58,18 @@ namespace kelio_client
       wednesdayNumericUpDown.Value = Properties.Settings.Default.PauseWednesday;
       thursdayNumericUpDown.Value = Properties.Settings.Default.PauseThursday;
       fridayNumericUpDown.Value = Properties.Settings.Default.PauseFriday;
+      mondayOffsetNumericUpDown.Value = Properties.Settings.Default.OffsetMonday;
+      tuesdayOffsetNumericUpDown.Value = Properties.Settings.Default.OffsetTuesday;
+      wednesdayOffsetNumericUpDown.Value = Properties.Settings.Default.OffsetWednesday;
+      thursdayOffsetNumericUpDown.Value = Properties.Settings.Default.OffsetThursday;
+      //fridayOffsetNumericUpDown.Value = Properties.Settings.Default.OffsetFriday;
       autoReminderCheckBox.Checked = Properties.Settings.Default.AutoReminder;
       windowSnappingCheckBox.Checked = Properties.Settings.Default.WindowSnapping;
+    }
+
+    private void label10_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }

@@ -154,5 +154,65 @@ namespace kelio_client.Properties {
                 this["WindowSnapping"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int OffsetMonday {
+            get {
+                return ((int)(this["OffsetMonday"]));
+            }
+            set {
+                this["OffsetMonday"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int OffsetTuesday {
+            get {
+                return ((int)(this["OffsetTuesday"]));
+            }
+            set {
+                this["OffsetTuesday"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("45")]
+        public int OffsetWednesday {
+            get {
+                return ((int)(this["OffsetWednesday"]));
+            }
+            set {
+                this["OffsetWednesday"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int OffsetThursday {
+            get {
+                return ((int)(this["OffsetThursday"]));
+            }
+            set {
+                this["OffsetThursday"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int OffsetFriday {
+            get {
+                return ((int)(this["OffsetFriday"]));
+            }
+            set {
+                this["OffsetFriday"] = value;
+            }
+        }
     }
 }

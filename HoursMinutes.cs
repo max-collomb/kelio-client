@@ -33,6 +33,22 @@ namespace kelio_client
       Minute = Math.Abs(_Minute);
       IsNegative = _Minute < 0;
     }
+    public void Remove(int delta)
+    {
+      Minute = (IsNegative ? -1 : 1) * (Hour * 60 + Minute);
+      Hour = 0;
+      Minute = Minute - delta;
+      IsNegative = Minute < 0;
+      Minute = Math.Abs(Minute);
+    }
+    public void Add(int delta)
+    {
+      Minute = (IsNegative ? -1 : 1) * (Hour * 60 + Minute);
+      Hour = 0;
+      Minute = Minute + delta;
+      IsNegative = Minute < 0;
+      Minute = Math.Abs(Minute);
+    }
     public override string ToString()
     {
       return (IsNegative ? "-" : "+") +  Hour.ToString("00") + ":" + Minute.ToString("00");

@@ -29,6 +29,7 @@ namespace kelio_client
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
@@ -55,6 +56,19 @@ namespace kelio_client
       this.autoReminderCheckBox = new System.Windows.Forms.CheckBox();
       this.label10 = new System.Windows.Forms.Label();
       this.windowSnappingCheckBox = new System.Windows.Forms.CheckBox();
+      this.label11 = new System.Windows.Forms.Label();
+      this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+      this.label12 = new System.Windows.Forms.Label();
+      this.label13 = new System.Windows.Forms.Label();
+      this.label14 = new System.Windows.Forms.Label();
+      this.label15 = new System.Windows.Forms.Label();
+      this.label16 = new System.Windows.Forms.Label();
+      this.mondayOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
+      this.tuesdayOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
+      this.wednesdayOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
+      this.thursdayOffsetNumericUpDown = new System.Windows.Forms.NumericUpDown();
+      this.fridayOffsetNumericUpDown5 = new System.Windows.Forms.NumericUpDown();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.mondayNumericUpDown)).BeginInit();
@@ -63,6 +77,12 @@ namespace kelio_client
       ((System.ComponentModel.ISupportInitialize)(this.thursdayNumericUpDown)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.fridayNumericUpDown)).BeginInit();
       this.panel1.SuspendLayout();
+      this.tableLayoutPanel3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.mondayOffsetNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.tuesdayOffsetNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.wednesdayOffsetNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.thursdayOffsetNumericUpDown)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.fridayOffsetNumericUpDown5)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -341,7 +361,7 @@ namespace kelio_client
       this.panel1.Controls.Add(this.panel2);
       this.panel1.Controls.Add(this.saveButton);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.panel1.Location = new System.Drawing.Point(10, 268);
+      this.panel1.Location = new System.Drawing.Point(10, 347);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(336, 30);
       this.panel1.TabIndex = 3;
@@ -381,7 +401,7 @@ namespace kelio_client
       // 
       this.autoReminderCheckBox.AutoSize = true;
       this.autoReminderCheckBox.Dock = System.Windows.Forms.DockStyle.Top;
-      this.autoReminderCheckBox.Location = new System.Drawing.Point(10, 188);
+      this.autoReminderCheckBox.Location = new System.Drawing.Point(10, 266);
       this.autoReminderCheckBox.Name = "autoReminderCheckBox";
       this.autoReminderCheckBox.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
       this.autoReminderCheckBox.Size = new System.Drawing.Size(336, 22);
@@ -392,19 +412,20 @@ namespace kelio_client
       // label10
       // 
       this.label10.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.label10.Location = new System.Drawing.Point(10, 245);
+      this.label10.Location = new System.Drawing.Point(10, 324);
       this.label10.Name = "label10";
       this.label10.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
       this.label10.Size = new System.Drawing.Size(336, 23);
       this.label10.TabIndex = 5;
-      this.label10.Text = "kelio-client v0.2";
+      this.label10.Text = "kelio-client v0.3";
       this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      this.label10.Click += new System.EventHandler(this.label10_Click);
       // 
       // windowSnappingCheckBox
       // 
       this.windowSnappingCheckBox.AutoSize = true;
       this.windowSnappingCheckBox.Dock = System.Windows.Forms.DockStyle.Top;
-      this.windowSnappingCheckBox.Location = new System.Drawing.Point(10, 210);
+      this.windowSnappingCheckBox.Location = new System.Drawing.Point(10, 288);
       this.windowSnappingCheckBox.Name = "windowSnappingCheckBox";
       this.windowSnappingCheckBox.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
       this.windowSnappingCheckBox.Size = new System.Drawing.Size(336, 22);
@@ -412,16 +433,209 @@ namespace kelio_client
       this.windowSnappingCheckBox.Text = "Aimanter la fenêtre aux bords de l\'écran";
       this.windowSnappingCheckBox.UseVisualStyleBackColor = true;
       // 
+      // label11
+      // 
+      this.label11.Dock = System.Windows.Forms.DockStyle.Top;
+      this.label11.Location = new System.Drawing.Point(10, 188);
+      this.label11.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(336, 28);
+      this.label11.TabIndex = 7;
+      this.label11.Text = "Ajustement du temps de travail théorique (en minutes)";
+      this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.toolTip1.SetToolTip(this.label11, "Pour travailler 15m de plus du lundi au jeudi et travailler 1h de moins le vendre" +
+        "di, saisir les valeurs 15, 30, 45, 60, 0");
+      // 
+      // tableLayoutPanel3
+      // 
+      this.tableLayoutPanel3.ColumnCount = 5;
+      this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+      this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+      this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+      this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+      this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+      this.tableLayoutPanel3.Controls.Add(this.label12, 0, 0);
+      this.tableLayoutPanel3.Controls.Add(this.label13, 1, 0);
+      this.tableLayoutPanel3.Controls.Add(this.label14, 2, 0);
+      this.tableLayoutPanel3.Controls.Add(this.label15, 3, 0);
+      this.tableLayoutPanel3.Controls.Add(this.label16, 4, 0);
+      this.tableLayoutPanel3.Controls.Add(this.mondayOffsetNumericUpDown, 0, 1);
+      this.tableLayoutPanel3.Controls.Add(this.tuesdayOffsetNumericUpDown, 1, 1);
+      this.tableLayoutPanel3.Controls.Add(this.wednesdayOffsetNumericUpDown, 2, 1);
+      this.tableLayoutPanel3.Controls.Add(this.thursdayOffsetNumericUpDown, 3, 1);
+      this.tableLayoutPanel3.Controls.Add(this.fridayOffsetNumericUpDown5, 4, 1);
+      this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(10, 216);
+      this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+      this.tableLayoutPanel3.RowCount = 2;
+      this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+      this.tableLayoutPanel3.Size = new System.Drawing.Size(336, 50);
+      this.tableLayoutPanel3.TabIndex = 8;
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(3, 0);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(33, 13);
+      this.label12.TabIndex = 0;
+      this.label12.Text = "Lundi";
+      // 
+      // label13
+      // 
+      this.label13.AutoSize = true;
+      this.label13.Location = new System.Drawing.Point(70, 0);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(33, 13);
+      this.label13.TabIndex = 1;
+      this.label13.Text = "Mardi";
+      // 
+      // label14
+      // 
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(137, 0);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(48, 13);
+      this.label14.TabIndex = 2;
+      this.label14.Text = "Mercredi";
+      // 
+      // label15
+      // 
+      this.label15.AutoSize = true;
+      this.label15.Location = new System.Drawing.Point(204, 0);
+      this.label15.Name = "label15";
+      this.label15.Size = new System.Drawing.Size(32, 13);
+      this.label15.TabIndex = 3;
+      this.label15.Text = "Jeudi";
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.Location = new System.Drawing.Point(271, 0);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(49, 13);
+      this.label16.TabIndex = 4;
+      this.label16.Text = "Vendredi";
+      // 
+      // mondayOffsetNumericUpDown
+      // 
+      this.mondayOffsetNumericUpDown.Location = new System.Drawing.Point(3, 23);
+      this.mondayOffsetNumericUpDown.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+      this.mondayOffsetNumericUpDown.Minimum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            -2147483648});
+      this.mondayOffsetNumericUpDown.Name = "mondayOffsetNumericUpDown";
+      this.mondayOffsetNumericUpDown.Size = new System.Drawing.Size(54, 20);
+      this.mondayOffsetNumericUpDown.TabIndex = 5;
+      this.mondayOffsetNumericUpDown.Value = new decimal(new int[] {
+            21,
+            0,
+            0,
+            0});
+      // 
+      // tuesdayOffsetNumericUpDown
+      // 
+      this.tuesdayOffsetNumericUpDown.Location = new System.Drawing.Point(70, 23);
+      this.tuesdayOffsetNumericUpDown.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+      this.tuesdayOffsetNumericUpDown.Minimum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            -2147483648});
+      this.tuesdayOffsetNumericUpDown.Name = "tuesdayOffsetNumericUpDown";
+      this.tuesdayOffsetNumericUpDown.Size = new System.Drawing.Size(54, 20);
+      this.tuesdayOffsetNumericUpDown.TabIndex = 6;
+      this.tuesdayOffsetNumericUpDown.Value = new decimal(new int[] {
+            42,
+            0,
+            0,
+            0});
+      // 
+      // wednesdayOffsetNumericUpDown
+      // 
+      this.wednesdayOffsetNumericUpDown.Location = new System.Drawing.Point(137, 23);
+      this.wednesdayOffsetNumericUpDown.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+      this.wednesdayOffsetNumericUpDown.Minimum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            -2147483648});
+      this.wednesdayOffsetNumericUpDown.Name = "wednesdayOffsetNumericUpDown";
+      this.wednesdayOffsetNumericUpDown.Size = new System.Drawing.Size(54, 20);
+      this.wednesdayOffsetNumericUpDown.TabIndex = 7;
+      this.wednesdayOffsetNumericUpDown.Value = new decimal(new int[] {
+            63,
+            0,
+            0,
+            0});
+      // 
+      // thursdayOffsetNumericUpDown
+      // 
+      this.thursdayOffsetNumericUpDown.Location = new System.Drawing.Point(204, 23);
+      this.thursdayOffsetNumericUpDown.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+      this.thursdayOffsetNumericUpDown.Minimum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            -2147483648});
+      this.thursdayOffsetNumericUpDown.Name = "thursdayOffsetNumericUpDown";
+      this.thursdayOffsetNumericUpDown.Size = new System.Drawing.Size(54, 20);
+      this.thursdayOffsetNumericUpDown.TabIndex = 8;
+      this.thursdayOffsetNumericUpDown.Value = new decimal(new int[] {
+            84,
+            0,
+            0,
+            0});
+      // 
+      // fridayOffsetNumericUpDown5
+      // 
+      this.fridayOffsetNumericUpDown5.Enabled = false;
+      this.fridayOffsetNumericUpDown5.Location = new System.Drawing.Point(271, 23);
+      this.fridayOffsetNumericUpDown5.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+      this.fridayOffsetNumericUpDown5.Minimum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            -2147483648});
+      this.fridayOffsetNumericUpDown5.Name = "fridayOffsetNumericUpDown5";
+      this.fridayOffsetNumericUpDown5.Size = new System.Drawing.Size(55, 20);
+      this.fridayOffsetNumericUpDown5.TabIndex = 9;
+      // 
       // ParamsForm
       // 
       this.AcceptButton = this.saveButton;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.cancelButton;
-      this.ClientSize = new System.Drawing.Size(356, 308);
+      this.ClientSize = new System.Drawing.Size(356, 387);
       this.Controls.Add(this.windowSnappingCheckBox);
       this.Controls.Add(this.label10);
       this.Controls.Add(this.autoReminderCheckBox);
+      this.Controls.Add(this.tableLayoutPanel3);
+      this.Controls.Add(this.label11);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.tableLayoutPanel2);
       this.Controls.Add(this.label4);
@@ -444,6 +658,13 @@ namespace kelio_client
       ((System.ComponentModel.ISupportInitialize)(this.thursdayNumericUpDown)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.fridayNumericUpDown)).EndInit();
       this.panel1.ResumeLayout(false);
+      this.tableLayoutPanel3.ResumeLayout(false);
+      this.tableLayoutPanel3.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.mondayOffsetNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.tuesdayOffsetNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.wednesdayOffsetNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.thursdayOffsetNumericUpDown)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.fridayOffsetNumericUpDown5)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -477,5 +698,18 @@ namespace kelio_client
     private System.Windows.Forms.CheckBox autoReminderCheckBox;
     private System.Windows.Forms.Label label10;
     private System.Windows.Forms.CheckBox windowSnappingCheckBox;
+    private System.Windows.Forms.Label label11;
+    private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+    private System.Windows.Forms.Label label12;
+    private System.Windows.Forms.Label label13;
+    private System.Windows.Forms.Label label14;
+    private System.Windows.Forms.Label label15;
+    private System.Windows.Forms.Label label16;
+    private System.Windows.Forms.NumericUpDown mondayOffsetNumericUpDown;
+    private System.Windows.Forms.NumericUpDown tuesdayOffsetNumericUpDown;
+    private System.Windows.Forms.NumericUpDown wednesdayOffsetNumericUpDown;
+    private System.Windows.Forms.NumericUpDown thursdayOffsetNumericUpDown;
+    private System.Windows.Forms.NumericUpDown fridayOffsetNumericUpDown5;
+    private System.Windows.Forms.ToolTip toolTip1;
   }
 }
