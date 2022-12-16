@@ -40,6 +40,7 @@ namespace kelio_client
       Minute = Minute - delta;
       IsNegative = Minute < 0;
       Minute = Math.Abs(Minute);
+      NormalizeMinutes();
     }
     public void Add(int delta)
     {
@@ -48,6 +49,15 @@ namespace kelio_client
       Minute = Minute + delta;
       IsNegative = Minute < 0;
       Minute = Math.Abs(Minute);
+      NormalizeMinutes();
+    }
+    private void NormalizeMinutes()
+    {
+      while (Minute > 59)
+      {
+        Hour++;
+        Minute -= 60;
+      }
     }
     public override string ToString()
     {
