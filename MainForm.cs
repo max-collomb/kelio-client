@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -492,6 +493,16 @@ namespace kelio_client
         StartPosition = FormStartPosition.Manual;
         DesktopBounds = Properties.Settings.Default.WindowPosition;
       }
+      if (TaskbarManager.IsPlatformSupported)
+      {
+        ThumbnailToolBarButton button = new ThumbnailToolBarButton(Properties.Resources.chrono, "Badger");
+        button.Click += new EventHandler<ThumbnailButtonClickedEventArgs>(ThumbnailButtonClicked);
+        TaskbarManager.Instance.ThumbnailToolBars.AddButtons(this.Handle, button);
+      }
+    }
+    private async void ThumbnailButtonClicked(object sender, ThumbnailButtonClickedEventArgs e)
+    {
+      await ClockInOut();
     }
 
     private void cancelReminderBtn_Click(object sender, EventArgs e)
